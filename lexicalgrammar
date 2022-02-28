@@ -1,0 +1,123 @@
+// Lexical grammar for j--
+// Copyright 2013 Bill Campbell, Swami Iyer and Bahar Akbal-Delibas
+
+// Whitespace -- ignored
+" "|"\t"|"\n"|"\r"|"\f"
+
+// Single line comment -- ignored
+"//" {~("\n"|"\r")} ("\n"|"\r"["\n"])
+
+//muti line comment -- ignored   2月24日新增，但是我不知道这部分是什么意思。。。。。
+"/*(*)*/"
+
+// Reserved words //2月18修改添加Break byte case catch char const continue default do double finally float for goto implements  interface native short strictfp switch  throw throws transient try violate 
+ABSTRACT    ::= "abstract"
+BOOLEAN     ::= "boolean"
+BYTE        ::= "byte"
+CASE        ::= "case"
+CATCH       ::= "catch"
+CONST       ::= "const"
+CONTINUE    ::= "continue"
+CHAR        ::= "char"
+CLASS       ::= "class"
+DEFAULT     ::= "default"
+DO          ::= "do"
+DOUBLE      ::= "double"
+ELSE        ::= "else"
+EXTENDS     ::= "extends"
+FALSE       ::= "false"
+FINALLY     ::= "finally"
+FLOAT       ::= "float"
+FOR         ::= "for"
+GOTO        ::= "goto"
+IF          ::= "if"
+IMPORT      ::= "import"
+INSTANCEOF  ::= "instanceof"
+IMPLEMENTS  ::= "implements"
+INTERFACE   ::= "interface"
+INT         ::= "int"
+NATIVE      ::= "native"
+NEW         ::= "new"
+NULL        ::= "null"
+PACKAGE     ::= "package"
+PRIVATE     ::= "private"
+PROTECTED   ::= "protected"
+PUBLIC      ::= "public"
+RETURN      ::= "return"
+STATIC      ::= "static"
+SUPER       ::= "super"
+SHORT       ::= "short"
+STRICTFP    ::= "strictfp"
+SWITCH      ::= "switch"
+SYNCHRONIZED    ::= "synchronized"
+THIS        ::= "this"
+TRUE        ::= "true"
+THROW       ::= "throw"
+THROWS      ::= "throws"
+TRANSIENT   ::= "transient"
+VOID        ::= "void"
+VOLATILE    ::= "volatile"
+WHILE       ::= "while"
+
+// Operators//2月19号新增 ？,-=,<<,<,<<=,<=,--,*=,!=,~,%=,^,^=,/=,>>,>>=,>>>,>>>=,>=,&,&=,|,|=,
+ASSIGN      ::= "="
+EQUAL       ::= "=="
+GT          ::= ">"
+GT_EQUAL    ::= ">="
+LEFT_SHIFT  ::= ">>"
+LS_ASSIGN   ::= ">>="
+LS_ZERO     ::= ">>>"
+LSZERO_ASSIGN   ::= ">>>="
+INC         ::= "++"
+AND         ::= "&"
+AND_ASSIGN  ::= "&="
+LAND        ::= "&&"
+LE          ::= "<="
+LNOT        ::= "!"
+MINUS       ::= "-"
+DEC         ::= "--"
+PLUS        ::= "+"
+PLUS_ASSIGN ::= "+="
+STAR        ::= "*"
+STAR_ASSIGN ::= "*="
+DIV         ::= "/"
+DIV_ASSIGN  ::= "/="
+REM         ::= "%"
+QUESTION    ::= "?"
+MINUS_ASSIGN 	 ::= "-="
+RIGHT_SHIFT  ::= "<<"
+LT          ::= "<"
+LSE         ::= "<<="
+NOT_EQUAL   ::= "!="
+COMPLEMENT  ::= "~"
+REM_ASSIGN  ::= "%="
+XOR         ::= "^"
+XOR_ASSIGN  ::= "^="
+BITWISE_OR          ::= "|"
+OR_ASSIGN   ::= "|="
+LOGICAL_OR  ::= "||"
+// Separators  2月24新增 :
+COMMA       ::= ","
+DOT         ::= "."
+LBRACK      ::= "["
+LCURLY      ::= "{"
+LPAREN      ::= "("
+RBRACK      ::= "]"
+RCURLY      ::= "}"
+RPAREN      ::= ")"
+SEMI        ::= ";"
+COLON       ::= ":"
+
+// Identifiers
+IDENTIFIER ::= ("a"-"z"|"A"-"Z"|"_"|"$") {"a"-"z"|"A"-"Z"|"_"|"0"-"9"|"$"}
+
+// Literals
+INT_LITERAL    ::= "0" | ("1"-"9") {"0"-"9"}
+ESC            ::= "\\" ("n"|"r"|"t"|"b"|"f"|"'"|"\""|"\\")
+STRING_LITERAL ::= "\"" {ESC | ~("\""|"\\"|"\n"|"\r")} "\""
+CHAR_LITERAL   ::= "'" (ESC | ~("'"|"\n"|"\r"|"\\")) "'"
+
+// End of file
+EOF            ::= "<end of file>"
+
+
